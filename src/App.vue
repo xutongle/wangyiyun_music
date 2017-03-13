@@ -11,9 +11,35 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  @import "~normalize.css/normalize.css";
+  html {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+  }
+  body {
+    background-color: #f2f4f5;
+    font-size: 12px;
+    color: #303131;
+  }
+  /*  重置样式  */
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  /*  主色调  */
+  .primary-color {
+    color: #d33a31;
+  }
+  .primary-bg-color {
+    background-color: #d33a31;
+  }
+  /*  常用样式  */
+  .flex {
+    display: flex;
+  }
+  .align-center {
+    text-align: center;
+  }
 </style>
