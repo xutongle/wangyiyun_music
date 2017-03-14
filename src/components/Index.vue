@@ -1,5 +1,5 @@
 <template>
-  <div class="index">
+  <div class="index-component">
     <index-top></index-top>
     <index-nav></index-nav>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="index-nav">
+  <div class="index-nav-component">
     <ul class="tabs flex">
       <li class="tab-item align-center primary-color tab-item-active">我的歌单</li>
       <li class="tab-item align-center">歌单</li>
@@ -7,6 +7,7 @@
       <li class="tab-item align-center">排行榜</li>
     </ul>
     <div class="tab-content">
+      <music-list></music-list>
     </div>
   </div>
 </template>
@@ -36,6 +37,7 @@
   }
 </style>
 <script>
+  import MusicList from '../common/MusicList.vue'
   export default{
     data () {
       return {
@@ -46,6 +48,7 @@
     created () {
     },
     components: {
+      MusicList
     }
   }
 </script>
