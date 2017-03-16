@@ -23,8 +23,11 @@ export default {
     font-size: 12px;
     color: #303131;
   }
+  html, body, #app {
+    height: 100%;
+  }
   /*  重置样式  */
-  ul {
+  ul, h4, p {
     margin: 0;
     padding: 0;
   }
