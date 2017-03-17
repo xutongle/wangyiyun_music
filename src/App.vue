@@ -1,13 +1,18 @@
 <template>
   <div id="app">
     <router-view></router-view>
+    <audio-controller></audio-controller>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  import AudioController from './components/AudioController.vue'
+  export default {
+    name: 'app',
+    components: {
+      AudioController
+    }
+  }
 </script>
 
 <style>
