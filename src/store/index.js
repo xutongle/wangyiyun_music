@@ -3,13 +3,21 @@
  */
 var storeConfig = {
   state: {
-    audioDom: ''
+    audioDomElement: ''
   },
   actions: {
 
   },
   mutations: {
-
+    setAudioDomElement (state) {
+      state.audioDomElement = document.getElementById('audioElement')
+    },
+    playControl (state) { //  播放控制
+      state.audioDomElement.play()
+    },
+    pauseControl (state) { //  暂停控制
+      state.audioDomElement.pause()
+    }
   }
 }
 export default storeConfig
