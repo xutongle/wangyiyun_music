@@ -9,6 +9,10 @@
   import AudioController from './components/AudioController.vue'
   export default {
     name: 'app',
+    created () {
+      //  获取当前手机分辨率宽度
+      this.$store.commit('setPhoneResolutionWidth')
+    },
     components: {
       AudioController
     }

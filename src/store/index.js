@@ -3,7 +3,8 @@
  */
 var storeConfig = {
   state: {
-    audioDomElement: ''
+    audioDomElement: '', //  音频Dom对象
+    phoneResolutionWidth: 0 //  手机分辨率宽度
   },
   actions: {
 
@@ -17,6 +18,9 @@ var storeConfig = {
     },
     pauseControl (state) { //  暂停控制
       state.audioDomElement.pause()
+    },
+    setPhoneResolutionWidth (state) { //  获取手机分辨率宽度
+      state.phoneResolutionWidth = window.screen.width * window.devicePixelRatio
     }
   }
 }

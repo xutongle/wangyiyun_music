@@ -7,7 +7,23 @@
       <li class="tab-item align-center">排行榜</li>
     </ul>
     <div class="tab-content">
-      <music-list></music-list>
+      <index-banner></index-banner>
+      <cate-title title="推荐歌单"></cate-title>
+      <div class="flex song-list-container">
+        <song-list></song-list>
+        <song-list></song-list>
+        <song-list></song-list>
+        <song-list></song-list>
+        <song-list></song-list>
+        <song-list></song-list>
+      </div>
+      <cate-title title="推荐MV"></cate-title>
+      <div class="flex mv-recommend-container">
+        <mv-recommend></mv-recommend>
+        <mv-recommend></mv-recommend>
+        <mv-recommend></mv-recommend>
+        <mv-recommend></mv-recommend>
+      </div>
     </div>
   </div>
 </template>
@@ -35,9 +51,18 @@
   [data-dpr="3"] .tabs .tab-item {
     font-size: 42px;
   }
+  .song-list-container,
+  .mv-recommend-container
+  {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 </style>
 <script>
-  import MusicList from '../common/MusicList.vue'
+  import IndexBanner from './IndexBanner.vue'
+  import CateTitle from '../common/CateTitle.vue'
+  import SongList from '../common/SongList.vue'
+  import MvRecommend from '../common/MvRecommend.vue'
   export default{
     data () {
       return {
@@ -48,7 +73,7 @@
     created () {
     },
     components: {
-      MusicList
+      IndexBanner, CateTitle, SongList, MvRecommend
     }
   }
 </script>
