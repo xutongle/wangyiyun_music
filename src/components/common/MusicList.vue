@@ -1,5 +1,48 @@
 <template>
   <div class="music-list-component">
+    <div class="flex music-list-header">
+      <div class="btn-back"></div>
+      <h3 class="music-list-title">歌单</h3>
+      <div class="music-list-search"></div>
+    </div>
+    <div class="flex music-list-message">
+      <div class="music-list-message-cover-container">
+        <img src="../../../static/images/index/song_list.jpg" class="music-list-cover">
+        <div class="flex music-list-message-listen">
+          <div class="music-list-message-listen-icon"></div>
+          <div class="music-list-message-listen-count">3425万</div>
+        </div>
+        <div class="music-list-message-info"></div>
+      </div>
+      <div class="music-list-message-detail">
+        <div class="music-list-message-name">[女声控]直抵内心深处的电子女声</div>
+        <div class="flex music-list-message-creator-info">
+          <div class="music-list-message-creator-avatar-container">
+            <img src="../../../static/images/icon_user.png" class="music-list-message-creator-avatar">
+            <img src="../../../static/images/icon_identity.png" class="music-list-message-creator-identity">
+          </div>
+          <div class="music-list-message-creator-name">mayoku然</div>
+        </div>
+      </div>
+    </div>
+    <div class="flex music-list-operation">
+      <div class="operation-collect">
+        <div class="operation-collect-icon"></div>
+        <div class="operation-collect-count">12345</div>
+      </div>
+      <div class="operation-comment">
+        <div class="operation-comment-icon"></div>
+        <div class="operation-comment-count">12345</div>
+      </div>
+      <div class="operation-share">
+        <div class="operation-share-icon"></div>
+        <div class="operation-share-count">12345</div>
+      </div>
+      <div class="operation-download">
+        <div class="operation-download-icon"></div>
+        <div class="operation-download-string">下载</div>
+      </div>
+    </div>
     <ul class="music-list">
       <li class="flex music-list-item">
         <div class="music-item">
@@ -15,8 +58,198 @@
   </div>
 </template>
 <style scoped>
+  .music-list-component {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(0deg, #6e564f, #5b1f1c);
+  }
+  .music-list-header {
+    padding: 0.4375rem 0.875rem 0 1.125rem;
+    height: 2.8125rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .btn-back {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 1.125rem;
+    background-image: url("../../../static/images/player/icon_back.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+  .music-list-title {
+    flex-grow: 1;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.125rem;
+  }
+  [data-dpr="2"] .music-list-title {
+    font-size: 32px;
+  }
+  [data-dpr="3"] .music-list-title {
+    font-size: 48px;
+  }
+  .music-list-search {
+    width: 1.25rem;
+    height: 1.25rem;
+    background: url("../../../static/images/index/m5.png") no-repeat;
+    background-size: 100% 100%;
+  }
+  .music-list-message {
+    padding-right: 1.5625rem;
+    padding-left: 1.4375rem;
+  }
+  .music-list-message-cover-container {
+    position: relative;
+    flex-shrink: 0;
+    margin-right: 1.0625rem;
+    width: 7.875rem;
+    height: 7.875rem;
+  }
+  .music-list-cover {
+    width: 100%;
+    height: 100%;
+  }
+  .music-list-message-listen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .music-list-message-listen-icon {
+    width: 0.625rem;
+    height: 0.625rem;
+    background-image: url('../../../static/images/index/vn.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  .music-list-message-listen-count {
+    padding-right: 0.3125rem;
+    padding-left: 0.125rem;
+    font-size: 10px;
+    color: #fff;
+  }
+  [data-dpr="2"] .music-list-message-listen-count {
+    font-size: 20px;
+  }
+  [data-dpr="3"] .music-list-message-listen-count {
+    font-size: 30px;
+  }
+  .music-list-message-info {
+    position: absolute;
+    right: 0.1875rem;
+    bottom: 0.1875rem;
+    width: 1.125rem;
+    height: 1.125rem;
+    background-image: url('../../../static/images/icon_info.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  .music-list-message-name {
+    margin-top: 0.5rem;
+    margin-bottom: 1.4375rem;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.1875rem;
+  }
+  [data-dpr="2"] .music-list-message-name {
+    font-size: 32px;
+  }
+  [data-dpr="3"] .music-list-message-name {
+    font-size: 48px;
+  }
+  /*  用户信息 */
+  .music-list-message-creator-avatar-container {
+    position: relative;
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  .music-list-message-creator-avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.625rem;
+    height: 1.625rem;
+  }
+  .music-list-message-creator-identity{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+  .music-list-message-creator-name {
+    margin-left: 0.3rem;
+    color: #f2eeee;
+    font-size: 14px;
+    line-height: 1.75rem;
+  }
+  [data-dpr="2"] .music-list-message-creator-name {
+    font-size: 28px;
+  }
+  [data-dpr="3"] .music-list-message-creator-name {
+    font-size: 42px;
+  }
+  /*  收藏、评论、分享、是否已下载等信息  */
+  .music-list-operation {
+    justify-content: space-around;
+    margin-top: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+  .operation-collect-icon,
+  .operation-comment-icon,
+  .operation-share-icon,
+  .operation-download-icon
+  {
+    margin: 0 auto;
+    width: 1.25rem;
+    height: 1.25rem;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  .operation-collect-icon {
+    background-image: url("../../../static/images/icon_collection.png");
+  }
+  .operation-comment-icon {
+    background-image: url("../../../static/images/icon_comment.png");
+  }
+  .operation-share-icon {
+    background-image: url("../../../static/images/icon_share.png");
+  }
+  .operation-download-icon {
+    background-image: url("../../../static/images/icon_download.png");
+  }
+  .operation-collect-count,
+  .operation-comment-count,
+  .operation-share-count,
+  .operation-download-string
+  {
+    color: #fff;
+    font-size: 10px;
+    line-height: 1.25rem;
+  }
+  [data-dpr="2"] .operation-collect-count,
+  [data-dpr="2"] .operation-comment-count,
+  [data-dpr="2"] .operation-share-count,
+  [data-dpr="2"] .operation-download-string
+  {
+    font-size: 20px;
+  }
+  [data-dpr="3"] .operation-collect-count,
+  [data-dpr="3"] .operation-comment-count,
+  [data-dpr="3"] .operation-share-count,
+  [data-dpr="3"] .operation-download-string
+  {
+    font-size: 30px;
+  }
+  /*  列表  */
   .music-list {
     padding-left: 0.9375rem;
+    background-color: #fff;
+    flex-grow: 1;
     /*border-top: 1px solid #e5e7e8;*/
   }
   .music-list-item {
@@ -67,7 +300,7 @@
     },
     methods: {
     },
-    created () {
+    creatord () {
     },
     components: {
     }
