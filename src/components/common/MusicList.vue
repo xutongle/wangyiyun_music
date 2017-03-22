@@ -65,21 +65,6 @@
             <div class="icon-ellipsis"></div>
           </div>
         </li>
-        <li class="flex music-list-item">
-          <div class="music-list-item-index">
-            <span>2</span>
-          </div>
-          <div class="flex music-item-container">
-            <div class="music-item">
-              <div class="flex music-detail">
-                <div class="music-name">Beautiful(haha)</div>
-                <div class="icon-mv"></div>
-              </div>
-              <div class="music-singer">Project46 - Beautiful</div>
-            </div>
-            <div class="icon-ellipsis"></div>
-          </div>
-        </li>
       </ul>
     </div>
   </div>

@@ -1,13 +1,13 @@
 <template>
   <div class="song-list-component" :style="{'width': componentWidth + 'px'}">
     <div class="song-list-detail" :style="{'width': componentWidth + 'px', 'height': componentHeight + 'px'}">
-      <img class="song-list-detail-cover" src="../../../static/images/index/song_list.jpg">
+      <img class="song-list-detail-cover" :src="songListInfo.coverImgUrl">
       <div class="flex song-list-detail-listen">
         <div class="song-list-detail-listen-icon"></div>
-        <div class="song-list-detail-listen-count">3425万</div>
+        <div class="song-list-detail-listen-count">{{ songListInfo.playCount }}</div>
       </div>
     </div>
-    <div class="song-list-name">华语Bossa Nova //你慵懒的像一只猫</div>
+    <div class="song-list-name">{{ songListInfo.name }}</div>
   </div>
 </template>
 <style scoped>
@@ -60,10 +60,17 @@
 </style>
 <script>
   export default{
+    props: {
+      id: {
+        type: Number,
+        required: true
+      }
+    },
     data () {
       return {
         componentWidth: 0, //  当前组件宽度
-        componentHeight: 0 //  当前组件高度
+        componentHeight: 0, //  当前组件高度
+        songListInfo: {} //  当前歌单信息
       }
     },
     computed: {
@@ -71,11 +78,19 @@
         return this.$store.state.phoneResolutionWidth
       }
     },
+    methods: {
+      loadData () {
+        this.$http({url: 'music_data.php', params: {pid: this.id}}).then(function (res) {
+          if (res.data.code === 200) this.songListInfo = res.data.result
+        })
+      }
+    },
     created () {
       //  设置组件宽度 = （当前手机分辨率宽度 - （2px间距）* 2) / 3
       this.componentWidth = (this.phoneResolutionWidth - 2 * 2) / 3
       //  组件高度和宽度比为1:1
       this.componentHeight = this.componentWidth
+      this.loadData()
     }
   }
 </script>

@@ -10,12 +10,12 @@
       <index-banner></index-banner>
       <cate-title title="推荐歌单"></cate-title>
       <div class="flex song-list-container">
-        <song-list></song-list>
-        <song-list></song-list>
-        <song-list></song-list>
-        <song-list></song-list>
-        <song-list></song-list>
-        <song-list></song-list>
+        <song-list :id="447039671"></song-list>
+        <song-list :id="447039671"></song-list>
+        <song-list :id="447039671"></song-list>
+        <song-list :id="447039671"></song-list>
+        <song-list :id="447039671"></song-list>
+        <song-list :id="447039671"></song-list>
       </div>
       <cate-title title="推荐MV"></cate-title>
       <div class="flex mv-recommend-container">
