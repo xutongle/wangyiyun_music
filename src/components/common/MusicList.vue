@@ -43,18 +43,45 @@
         <div class="operation-download-string">下载</div>
       </div>
     </div>
-    <ul class="music-list">
-      <li class="flex music-list-item">
-        <div class="music-item">
-          <div class="flex music-detail">
-            <div class="music-name">Beautiful(haha)</div>
-            <div class="icon-mv"></div>
+    <div class="music-list-playlist">
+      <div class="flex music-list-playlist-header">
+        <div class="music-list-playlist-icon-title"></div>
+        <h3 class="music-list-playlist-title">播放全部<span class="music-list-playlist-count">(共50首)</span></h3>
+        <div class="music-list-playlist-icon-setting"></div>
+      </div>
+      <ul class="music-list">
+        <li class="flex music-list-item">
+          <div class="music-list-item-index">
+            <span>1</span>
           </div>
-          <div class="music-singer">Project46 - Beautiful</div>
-        </div>
-        <div class="icon-ellipsis"></div>
-      </li>
-    </ul>
+          <div class="flex music-item-container">
+            <div class="music-item">
+              <div class="flex music-detail">
+                <div class="music-name">Beautiful(haha)</div>
+                <div class="icon-mv"></div>
+              </div>
+              <div class="music-singer">Project46 - Beautiful</div>
+            </div>
+            <div class="icon-ellipsis"></div>
+          </div>
+        </li>
+        <li class="flex music-list-item">
+          <div class="music-list-item-index">
+            <span>2</span>
+          </div>
+          <div class="flex music-item-container">
+            <div class="music-item">
+              <div class="flex music-detail">
+                <div class="music-name">Beautiful(haha)</div>
+                <div class="icon-mv"></div>
+              </div>
+              <div class="music-singer">Project46 - Beautiful</div>
+            </div>
+            <div class="icon-ellipsis"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 <style scoped>
@@ -245,18 +272,82 @@
   {
     font-size: 30px;
   }
+  /*  列表头部  */
+  .music-list-playlist {
+    flex-grow: 1;
+    background-color: #fff;
+  }
+  .music-list-playlist-header {
+    padding: 0 0.9375rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .music-list-playlist-icon-title,
+  .music-list-playlist-icon-setting
+  {
+    width: 1.25rem;
+    height: 1.25rem;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  .music-list-playlist-icon-title
+  {
+    margin-right: 0.9375rem;
+    background-image: url("../../../static/images/icon_play_all.png");
+  }
+  .music-list-playlist-icon-setting
+  {
+    background-image: url("../../../static/images/icon_setting.png");
+  }
+  .music-list-playlist-title {
+    flex-grow: 1;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.25rem;
+  }
+  [data-dpr="2"] .music-list-playlist-title {
+    font-size: 32px;
+  }
+  [data-dpr="3"] .music-list-playlist-title {
+    font-size: 48px;
+  }
+  .music-list-playlist-count {
+    font-size: 14px;
+    color: #919293;
+  }
+  [data-dpr="2"] .music-list-playlist-count {
+    font-size: 28px;
+  }
+  [data-dpr="3"] .music-list-playlist-count {
+    font-size: 42px;
+  }
   /*  列表  */
   .music-list {
     padding-left: 0.9375rem;
-    background-color: #fff;
-    flex-grow: 1;
-    /*border-top: 1px solid #e5e7e8;*/
+    border-top: 1px solid #e5e7e8;
   }
   .music-list-item {
-    padding: 0.5rem 0 0.3125rem;
+    align-items: center;
+    justify-content: space-between;
+    /*border-bottom: 1px solid #e5e7e8;*/
+  }
+  .music-list-item-index {
+    margin-right: 1.25rem;
+    width: 1.125rem;
+    height: 1.125rem;
+    color: #919293;
+    line-height: 1.125rem;
+    text-align: center;
+  }
+  .music-item-container {
+    padding: 0.5rem 0 0.375rem;
+    flex-grow: 1;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #e5e7e8;
+  }
+  .music-item {
+    flex-grow: 1;
   }
   .music-detail {
     align-items: center;
