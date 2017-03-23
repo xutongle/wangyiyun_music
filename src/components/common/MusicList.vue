@@ -7,36 +7,36 @@
     </div>
     <div class="flex music-list-message">
       <div class="music-list-message-cover-container">
-        <img src="../../../static/images/index/song_list.jpg" class="music-list-cover">
+        <img :src="songListInfo.coverImgUrl" class="music-list-cover">
         <div class="flex music-list-message-listen">
           <div class="music-list-message-listen-icon"></div>
-          <div class="music-list-message-listen-count">3425万</div>
+          <div class="music-list-message-listen-count">{{ songListInfo.playCount }}</div>
         </div>
         <div class="music-list-message-info"></div>
       </div>
       <div class="music-list-message-detail">
-        <div class="music-list-message-name">[女声控]直抵内心深处的电子女声</div>
+        <div class="music-list-message-name">{{ songListInfo.name }}</div>
         <div class="flex music-list-message-creator-info">
           <div class="music-list-message-creator-avatar-container">
-            <img src="../../../static/images/icon_user.png" class="music-list-message-creator-avatar">
+            <img :src="creator.avatarUrl" class="music-list-message-creator-avatar">
             <img src="../../../static/images/icon_identity.png" class="music-list-message-creator-identity">
           </div>
-          <div class="music-list-message-creator-name">mayoku然</div>
+          <div class="music-list-message-creator-name">{{ creator.nickname }}</div>
         </div>
       </div>
     </div>
     <div class="flex music-list-operation">
       <div class="operation-collect">
         <div class="operation-collect-icon"></div>
-        <div class="operation-collect-count">12345</div>
+        <div class="operation-collect-count">{{ songListInfo.subscribedCount }}</div>
       </div>
       <div class="operation-comment">
         <div class="operation-comment-icon"></div>
-        <div class="operation-comment-count">12345</div>
+        <div class="operation-comment-count">{{ songListInfo.commentCount }}</div>
       </div>
       <div class="operation-share">
         <div class="operation-share-icon"></div>
-        <div class="operation-share-count">12345</div>
+        <div class="operation-share-count">{{ songListInfo.shareCount }}</div>
       </div>
       <div class="operation-download">
         <div class="operation-download-icon"></div>
@@ -46,25 +46,27 @@
     <div class="music-list-playlist">
       <div class="flex music-list-playlist-header">
         <div class="music-list-playlist-icon-title"></div>
-        <h3 class="music-list-playlist-title">播放全部<span class="music-list-playlist-count">(共50首)</span></h3>
+        <h3 class="music-list-playlist-title">播放全部<span class="music-list-playlist-count">(共{{ songListInfo.trackCount }}首)</span></h3>
         <div class="music-list-playlist-icon-setting"></div>
       </div>
       <ul class="music-list">
-        <li class="flex music-list-item">
-          <div class="music-list-item-index">
-            <span>1</span>
-          </div>
-          <div class="flex music-item-container">
-            <div class="music-item">
-              <div class="flex music-detail">
-                <div class="music-name">Beautiful(haha)</div>
-                <div class="icon-mv"></div>
-              </div>
-              <div class="music-singer">Project46 - Beautiful</div>
+        <template v-for="(track, index) in tracks">
+          <li class="flex music-list-item" @click="playThis(track.id, track.mp3Url)" :key=track.id>
+            <div class="music-list-item-index">
+              <span>{{ index + 1 }}</span>
             </div>
-            <div class="icon-ellipsis"></div>
-          </div>
-        </li>
+            <div class="flex music-item-container">
+              <div class="music-item">
+                <div class="flex music-detail">
+                  <div class="music-name">{{ track.name }}</div>
+                  <div v-if="track.mvid !== 0" class="icon-mv"></div>
+                </div>
+                <div class="music-singer">{{ ' - ' + track.album.name }}</div>
+              </div>
+              <div class="icon-ellipsis"></div>
+            </div>
+          </li>
+        </template>
       </ul>
     </div>
   </div>
@@ -81,6 +83,7 @@
     height: 2.8125rem;
     justify-content: space-between;
     align-items: center;
+    flex-shrink: 0;
   }
   .btn-back {
     width: 1.25rem;
@@ -111,6 +114,7 @@
   .music-list-message {
     padding-right: 1.5625rem;
     padding-left: 1.4375rem;
+    flex-shrink: 0;
   }
   .music-list-message-cover-container {
     position: relative;
@@ -185,6 +189,7 @@
     left: 0;
     width: 1.625rem;
     height: 1.625rem;
+    border-radius: 50%;
   }
   .music-list-message-creator-identity{
     position: absolute;
@@ -192,6 +197,7 @@
     right: 0;
     width: 0.75rem;
     height: 0.75rem;
+    border-radius: 50%;
   }
   .music-list-message-creator-name {
     margin-left: 0.3rem;
@@ -210,6 +216,7 @@
     justify-content: space-around;
     margin-top: 1.125rem;
     margin-bottom: 0.5rem;
+    flex-shrink: 0;
   }
   .operation-collect-icon,
   .operation-comment-icon,
@@ -358,6 +365,9 @@
   .music-singer {
     color: #797a7b;
     line-height: 0.875rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .icon-ellipsis {
     margin-right: 1.0625rem;
@@ -372,11 +382,27 @@
   export default{
     data () {
       return {
+        songListInfo: {},
+        creator: {},
+        tracks: []
       }
     },
     methods: {
+      loadData () {
+        this.$http({url: 'music_data.php', params: {pid: this.$route.params.id}}).then(function (res) {
+          if (res.data.code === 200) {
+            this.songListInfo = res.data.result
+            this.creator = res.data.result.creator
+            this.tracks = res.data.result.tracks
+          }
+        })
+      },
+      playThis (id, url) {
+        console.log(id, url)
+      }
     },
-    creatord () {
+    created () {
+      this.loadData()
     },
     components: {
     }

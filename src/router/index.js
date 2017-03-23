@@ -19,7 +19,7 @@ export default new Router({
       component: Player
     },
     {
-      path: '/musicList',
+      path: '/musicList/:id',
       name: 'MusicList',
       component: MusicList
     }

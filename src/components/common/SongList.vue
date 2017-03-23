@@ -1,6 +1,6 @@
 <template>
   <div class="song-list-component" :style="{'width': componentWidth + 'px'}">
-    <div class="song-list-detail" :style="{'width': componentWidth + 'px', 'height': componentHeight + 'px'}">
+    <div class="song-list-detail" @click="goToMusicList(songListInfo.id)" :style="{'width': componentWidth + 'px', 'height': componentHeight + 'px'}">
       <img class="song-list-detail-cover" :src="songListInfo.coverImgUrl">
       <div class="flex song-list-detail-listen">
         <div class="song-list-detail-listen-icon"></div>
@@ -82,6 +82,14 @@
       loadData () {
         this.$http({url: 'music_data.php', params: {pid: this.id}}).then(function (res) {
           if (res.data.code === 200) this.songListInfo = res.data.result
+        })
+      },
+      goToMusicList (id) {
+        this.$router.push({
+          name: 'MusicList',
+          params: {
+            id: id
+          }
         })
       }
     },

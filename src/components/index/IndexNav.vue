@@ -11,11 +11,11 @@
       <cate-title title="推荐歌单"></cate-title>
       <div class="flex song-list-container">
         <song-list :id="447039671"></song-list>
-        <song-list :id="447039671"></song-list>
-        <song-list :id="447039671"></song-list>
-        <song-list :id="447039671"></song-list>
-        <song-list :id="447039671"></song-list>
-        <song-list :id="447039671"></song-list>
+        <song-list :id="560801222"></song-list>
+        <song-list :id="506954473"></song-list>
+        <song-list :id="506913893"></song-list>
+        <song-list :id="505347469"></song-list>
+        <song-list :id="323396962"></song-list>
       </div>
       <cate-title title="推荐MV"></cate-title>
       <div class="flex mv-recommend-container">
