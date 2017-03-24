@@ -51,7 +51,7 @@
       </div>
       <ul class="music-list">
         <template v-for="(track, index) in tracks">
-          <li class="flex music-list-item" @click="playThis(track.id, track.mp3Url)" :key=track.id>
+          <li class="flex music-list-item" @click="playThis(track)" :key=track.id>
             <div class="music-list-item-index">
               <span>{{ index + 1 }}</span>
             </div>
@@ -387,6 +387,14 @@
         tracks: []
       }
     },
+    computed: {
+      playlist () {
+        return this.$store.state.playlist
+      },
+      songMsg () {
+        return this.$store.state.songMsg
+      }
+    },
     methods: {
       loadData () {
         this.$http({url: 'music_data.php', params: {pid: this.$route.params.id}}).then(function (res) {
@@ -397,8 +405,30 @@
           }
         })
       },
-      playThis (id, url) {
-        console.log(id, url)
+      playThis (songMsg) {
+        //  如果正在播放当前音乐，那么点击变为跳转到播放界面
+        if (this.songMsg.id === songMsg.id) {
+          this.$router.push({
+            name: 'Player'
+          })
+          return
+        }
+        //  设置播放的音频信息
+        this.$store.dispatch('setSongMsg', {
+          id: songMsg.id, //  歌曲id
+          name: songMsg.name, // 歌曲名称
+          artists: songMsg.artists, //  演唱歌手
+          mp3Url: songMsg.mp3Url, // 播放链接
+          mvid: songMsg.mvid //  mv链接ID，0为没有id
+        })
+        //  将该列表推送至正在播放列表,并进行避免重复推送校验
+        if (this.playlist.type !== 'list' || (this.playlist.type === 'list' && this.playlist.id !== this.songListInfo.id)) {
+          this.$store.commit('setPlaylist', {
+            id: this.songListInfo.id,
+            type: 'list',
+            list: this.tracks
+          })
+        }
       }
     },
     created () {
