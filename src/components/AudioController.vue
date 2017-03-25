@@ -18,6 +18,8 @@
     mounted () {
       //  设置全局音频控制对象
       this.$store.commit('setAudioDomElement')
+      //  注册播放相关事件
+      this.$store.dispatch('registerPlayEvent')
     },
     components: {
     }

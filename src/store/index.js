@@ -63,6 +63,20 @@ var storeConfig = {
       dispatch('setSongMsg', state.playlist.list[randomNumber])
       state.songMsgIndex = randomNumber
     },
+    registerPlayEvent ({dispatch, commit, state}) { //  注册播放过程中的相关事件
+      //  注册音乐结束后自动播放下一首事件
+      state.audioDomElement.onended = function () {
+        state.playStatus = false //  结束歌曲后重置播放状态
+        if (state.playMode !== 'singleCycle') { //  不是单曲循环的都自动播放下一首
+          dispatch('nextControl')
+        } else { //  单曲循环模式，1.5秒后继续播放当前音频
+          var timer = setTimeout(function () {
+            commit('playControl')
+            clearTimeout(timer)
+          }, 1500)
+        }
+      }
+    },
     setSongMsg ({commit, state}, payload) { //  更改音频源时，进行播放操作
       //  设置正在播放音乐的信息
       state.songMsg = payload
