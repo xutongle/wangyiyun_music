@@ -21,7 +21,8 @@ var storeConfig = {
      mvid: mv链接ID，0为没有id
      */
     songMsg: {},
-    playStatus: false //  当前播放状态：true为正在播放，false为暂停或者未播放
+    playStatus: false, //  当前播放状态：true为正在播放，false为暂停或者未播放
+    playMode: 'listCycle' //  播放模式，三种：listCycle（列表循环），listRandom（列表随机）,singleCycle(单曲循环)
   },
   actions: {
     setSongMsg ({commit, state}, payload) { //  更改音频源时，进行播放操作
@@ -48,6 +49,16 @@ var storeConfig = {
     },
     setPlaylist (state, payload) { //  设置正在播放列表
       state.playlist = payload
+    },
+    setPlayMode (state) { //  更改播放模式，
+      //  三种：listCycle（列表循环），listRandom（列表随机）,singleCycle(单曲循环)
+      if (state.playMode === 'listCycle') {
+        state.playMode = 'listRandom'
+      } else if (state.playMode === 'listRandom') {
+        state.playMode = 'singleCycle'
+      } else {
+        state.playMode = 'listCycle'
+      }
     }
   }
 }

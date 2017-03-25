@@ -20,7 +20,7 @@
     <div class="player-footer">
       <div class="player-timeline"></div>
       <div class="flex player-controllers">
-        <div class="player-mode background"></div>
+        <div @click="changePlayMode" class="player-mode background" :class="{'player-mode-listRandom': playMode === 'listRandom', 'player-mode-singleCycle': playMode === 'singleCycle'}"></div>
         <div class="player-pre background"></div>
         <div @click="playControl" class="player-pause background" :class="{'player-play': !playStatus}"></div>
         <div class="player-next background"></div>
@@ -141,6 +141,12 @@
   .player-mode {
     background-image: url('../../static/images/player/icon_loop_mode.png');
   }
+  .player-mode-listRandom {
+    background-image: url('../../static/images/player/icon_random_mode.png');
+  }
+  .player-mode-singleCycle {
+    background-image: url('../../static/images/player/icon_single_mode.png');
+  }
   .player-playing-list {
     background-image: url('../../static/images/player/icon_playing_list.png');
   }
@@ -177,6 +183,9 @@
       },
       playStatus () {
         return this.$store.state.playStatus
+      },
+      playMode () {
+        return this.$store.state.playMode
       }
     },
     methods: {
@@ -186,6 +195,9 @@
         } else {
           this.$store.commit('playControl')
         }
+      },
+      changePlayMode () {
+        this.$store.commit('setPlayMode')
       }
     },
     created () {
