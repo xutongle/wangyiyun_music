@@ -332,21 +332,29 @@
     text-align: center;
   }
   .music-item-container {
-    padding: 0.5rem 0 0.375rem;
+    padding: 0.5rem 0;
     flex-grow: 1;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #e5e7e8;
+    overflow: hidden;
   }
   .music-item {
     flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .music-detail {
+    padding-right: 1.75rem;
     align-items: center;
   }
   .music-name {
     font-size: 14px;
     line-height: 1.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   [data-dpr="2"] .music-name {
     font-size: 28px;
@@ -355,6 +363,7 @@
     font-size: 42px;
   }
   .icon-mv {
+    flex-shrink: 0;
     margin-left: 0.3125rem;
     width: 1.958rem;
     height: 0.8333rem;
@@ -363,6 +372,7 @@
     background-size: 100% 100%;
   }
   .music-singer {
+    padding-right: 1.5rem;
     color: #797a7b;
     line-height: 0.875rem;
     overflow: hidden;
@@ -370,6 +380,7 @@
     white-space: nowrap;
   }
   .icon-ellipsis {
+    flex-shrink: 0;
     margin-right: 1.0625rem;
     width: 0.8125rem;
     height: 0.8125rem;
