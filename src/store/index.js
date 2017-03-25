@@ -16,10 +16,12 @@ var storeConfig = {
      id: 歌曲id
      name: 歌曲名称
      artists: 演唱歌手
+     album: 专辑信息
      mp3Url: 播放链接
      mvid: mv链接ID，0为没有id
      */
-    songMsg: {}
+    songMsg: {},
+    playStatus: false //  当前播放状态：true为正在播放，false为暂停或者未播放
   },
   actions: {
     setSongMsg ({commit, state}, payload) { //  更改音频源时，进行播放操作
@@ -35,9 +37,11 @@ var storeConfig = {
     },
     playControl (state) { //  播放控制
       state.audioDomElement.play()
+      state.playStatus = true
     },
     pauseControl (state) { //  暂停控制
       state.audioDomElement.pause()
+      state.playStatus = false
     },
     setPhoneResolutionWidth (state) { //  获取手机分辨率宽度
       state.phoneResolutionWidth = window.screen.width * window.devicePixelRatio

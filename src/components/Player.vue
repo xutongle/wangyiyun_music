@@ -12,7 +12,9 @@
       <div class="player-diskette-pole background"></div>
       <div class="player-diskette-bg"></div>
       <div class="flex player-diskette-rotate background">
-        <img class="player-diskette-album" src="http://p4.music.126.net/qpvBqYIqkRhO9Ry2qOCdJQ==/2942293117852634.jpg?param=130y130" />
+        <img class="player-diskette-album" :src="songMsg.album.picUrl" />
+        <!--<img v-if="songMsg.album.picUrl !== ''" class="player-diskette-album" :src="songMsg.album.picUrl" />-->
+        <!--<img v-else class="player-diskette-album" src="../../static/images/player/album.png" />-->
       </div>
     </div>
     <div class="player-footer">
@@ -20,7 +22,7 @@
       <div class="flex player-controllers">
         <div class="player-mode background"></div>
         <div class="player-pre background"></div>
-        <div class="player-pause background"></div>
+        <div @click="playControl" class="player-pause background" :class="{'player-play': !playStatus}"></div>
         <div class="player-next background"></div>
         <div class="player-playing-list background"></div>
       </div>
@@ -158,6 +160,9 @@
     height: 2.875rem;
     background-image: url('../../static/images/player/icon_pause.png');
   }
+  .player-play {
+    background-image: url('../../static/images/player/icon_play.png');
+  }
 </style>
 <script>
   import IconBack from './common/IconBack.vue'
@@ -169,9 +174,19 @@
     computed: {
       songMsg () {
         return this.$store.state.songMsg
+      },
+      playStatus () {
+        return this.$store.state.playStatus
       }
     },
     methods: {
+      playControl () { //  播放控制
+        if (this.playStatus) {
+          this.$store.commit('pauseControl')
+        } else {
+          this.$store.commit('playControl')
+        }
+      }
     },
     created () {
     },

@@ -402,6 +402,7 @@
           id: songMsg.id, //  歌曲id
           name: songMsg.name, // 歌曲名称
           artists: songMsg.artists, //  演唱歌手
+          album: songMsg.album, //  专辑信息，主要用于封面图及背景高斯模糊
           mp3Url: songMsg.mp3Url, // 播放链接
           mvid: songMsg.mvid //  mv链接ID，0为没有id
         })
