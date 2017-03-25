@@ -1,7 +1,7 @@
 <template>
   <div class="flex cate-title-component">
     <h4 class="cate-title">{{ title }}</h4>
-    <div class="icon-arrow"></div>
+    <div class="icon-arrow background"></div>
   </div>
 </template>
 <style scoped>
@@ -37,8 +37,6 @@
     width: 0.5rem;
     height: 0.875rem;
     background-image: url('../../../static/images/index/yv.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
   }
 </style>
 <script>

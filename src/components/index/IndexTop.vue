@@ -1,7 +1,7 @@
 <template>
   <div class="index-top primary-bg-color flex">
-    <div class="logo"></div>
-    <div class="search"></div>
+    <div class="logo background"></div>
+    <div class="search background"></div>
   </div>
 </template>
 <style scoped>
@@ -14,14 +14,12 @@
   .index-top .logo {
     width: 9.357rem;
     height: 3rem;
-    background: url("../../../static/images/index/logo.png") no-repeat;
-    background-size: 100% 100%;
+    background-image: url("../../../static/images/index/logo.png");
   }
   .index-top .search {
     width: 1.25rem;
     height: 1.25rem;
-    background: url("../../../static/images/index/m5.png") no-repeat;
-    background-size: 100% 100%;
+    background-image: url("../../../static/images/index/m5.png");
   }
 </style>
 <script>

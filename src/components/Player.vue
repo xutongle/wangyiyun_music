@@ -1,28 +1,28 @@
 <template>
   <div class="flex player-component">
     <div class="flex player-header">
-      <div class="btn-back"></div>
+      <icon-back></icon-back>
       <div class="player-music-item">
         <h4 class="player-music-name text-ellipsis">{{ songMsg.name }}</h4>
         <p class="player-music-singer text-ellipsis">{{ songMsg.artists | transformArtistList }}</p>
       </div>
-      <div class="player-share"></div>
+      <div class="player-share background"></div>
     </div>
     <div class="flex player-diskette">
-      <div class="player-diskette-pole"></div>
+      <div class="player-diskette-pole background"></div>
       <div class="player-diskette-bg"></div>
-      <div class="flex player-diskette-rotate">
+      <div class="flex player-diskette-rotate background">
         <img class="player-diskette-album" src="http://p4.music.126.net/qpvBqYIqkRhO9Ry2qOCdJQ==/2942293117852634.jpg?param=130y130" />
       </div>
     </div>
     <div class="player-footer">
       <div class="player-timeline"></div>
       <div class="flex player-controllers">
-        <div class="player-mode"></div>
-        <div class="player-pre"></div>
-        <div class="player-pause"></div>
-        <div class="player-next"></div>
-        <div class="player-playing-list"></div>
+        <div class="player-mode background"></div>
+        <div class="player-pre background"></div>
+        <div class="player-pause background"></div>
+        <div class="player-next background"></div>
+        <div class="player-playing-list background"></div>
       </div>
     </div>
   </div>
@@ -39,16 +39,11 @@
     justify-content: space-between;
     align-items: center;
   }
-  .btn-back {
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-right: 1.125rem;
-    background-image: url("../../static/images/player/icon_back.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
-  }
   .player-music-item {
     flex-grow: 1;
+    padding-right: 1.125rem;
+    padding-left: 1.125rem;
+    overflow: hidden;
   }
   .player-music-name {
     color: #fff;
@@ -73,11 +68,10 @@
     font-size: 36px;
   }
   .player-share {
+    flex-shrink: 0;
     width: 1.25rem;
     height: 1.25rem;
     background-image: url("../../static/images/player/icon_share.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
   }
   .player-diskette {
     position: relative;
@@ -93,8 +87,6 @@
     width: 5.25rem;
     height: 8.125rem;
     background-image: url("../../static/images/player/icon_diskette_pole.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
     -webkit-transition: transform .5s;
     -moz-transition: transform .5s ;
     -ms-transition: transform .5s ;
@@ -123,8 +115,6 @@
     justify-content: center;
     align-items: center;
     background-image: url("../../static/images/player/icon_diskette.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
     border-radius: 50%;
   }
   .player-diskette-album {
@@ -145,8 +135,6 @@
   .player-playing-list {
     width: 1.375rem;
     height: 1.375rem;
-    background-repeat: no-repeat;
-    background-size: 100%;
   }
   .player-mode {
     background-image: url('../../static/images/player/icon_loop_mode.png');
@@ -158,8 +146,6 @@
   .player-next {
     width: 1.5rem;
     height: 1.5rem;
-    background-repeat: no-repeat;
-    background-size: 100%;
   }
   .player-pre {
     background-image: url('../../static/images/player/icon_pre.png');
@@ -171,11 +157,10 @@
     width: 2.875rem;
     height: 2.875rem;
     background-image: url('../../static/images/player/icon_pause.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
   }
 </style>
 <script>
+  import IconBack from './common/IconBack.vue'
   export default{
     data () {
       return {
@@ -191,6 +176,7 @@
     created () {
     },
     components: {
+      IconBack
     }
   }
 </script>

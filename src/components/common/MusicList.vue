@@ -1,18 +1,18 @@
 <template>
   <div class="music-list-component">
     <div class="flex music-list-header">
-      <div class="btn-back"></div>
-      <h3 class="music-list-title">歌单</h3>
-      <div class="music-list-search"></div>
+      <icon-back></icon-back>
+      <h3 class="music-list-title text-ellipsis">歌单</h3>
+      <div class="music-list-search background"></div>
     </div>
     <div class="flex music-list-message">
       <div class="music-list-message-cover-container">
         <img :src="songListInfo.coverImgUrl" class="music-list-cover">
         <div class="flex music-list-message-listen">
-          <div class="music-list-message-listen-icon"></div>
+          <div class="music-list-message-listen-icon background"></div>
           <div class="music-list-message-listen-count">{{ songListInfo.playCount }}</div>
         </div>
-        <div class="music-list-message-info"></div>
+        <div class="music-list-message-info background"></div>
       </div>
       <div class="music-list-message-detail">
         <div class="music-list-message-name">{{ songListInfo.name }}</div>
@@ -27,27 +27,27 @@
     </div>
     <div class="flex music-list-operation">
       <div class="operation-collect">
-        <div class="operation-collect-icon"></div>
+        <div class="operation-collect-icon background"></div>
         <div class="operation-collect-count">{{ songListInfo.subscribedCount }}</div>
       </div>
       <div class="operation-comment">
-        <div class="operation-comment-icon"></div>
+        <div class="operation-comment-icon background"></div>
         <div class="operation-comment-count">{{ songListInfo.commentCount }}</div>
       </div>
       <div class="operation-share">
-        <div class="operation-share-icon"></div>
+        <div class="operation-share-icon background"></div>
         <div class="operation-share-count">{{ songListInfo.shareCount }}</div>
       </div>
       <div class="operation-download">
-        <div class="operation-download-icon"></div>
+        <div class="operation-download-icon background"></div>
         <div class="operation-download-string">下载</div>
       </div>
     </div>
     <div class="music-list-playlist">
       <div class="flex music-list-playlist-header">
-        <div class="music-list-playlist-icon-title"></div>
+        <div class="music-list-playlist-icon-title background"></div>
         <h3 class="music-list-playlist-title">播放全部<span class="music-list-playlist-count">(共{{ songListInfo.trackCount }}首)</span></h3>
-        <div class="music-list-playlist-icon-setting"></div>
+        <div class="music-list-playlist-icon-setting background"></div>
       </div>
       <ul class="music-list">
         <template v-for="(track, index) in tracks">
@@ -59,11 +59,11 @@
               <div class="music-item text-ellipsis">
                 <div class="flex music-detail">
                   <div class="music-name text-ellipsis">{{ track.name }}</div>
-                  <div v-if="track.mvid !== 0" class="icon-mv"></div>
+                  <div v-if="track.mvid !== 0" class="icon-mv background"></div>
                 </div>
                 <div class="music-singer text-ellipsis">{{track.artists | transformArtistList }}{{ ' - ' + track.album.name }}</div>
               </div>
-              <div class="icon-ellipsis"></div>
+              <div class="icon-ellipsis background"></div>
             </div>
           </li>
         </template>
@@ -85,16 +85,10 @@
     align-items: center;
     flex-shrink: 0;
   }
-  .btn-back {
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-right: 1.125rem;
-    background-image: url("../../../static/images/player/icon_back.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
-  }
   .music-list-title {
     flex-grow: 1;
+    padding-right: 1.125rem;
+    padding-left: 1.125rem;
     color: #fff;
     font-size: 16px;
     line-height: 1.125rem;
@@ -108,8 +102,7 @@
   .music-list-search {
     width: 1.25rem;
     height: 1.25rem;
-    background: url("../../../static/images/index/m5.png") no-repeat;
-    background-size: 100% 100%;
+    background-image: url("../../../static/images/index/m5.png");
   }
   .music-list-message {
     padding-right: 1.5625rem;
@@ -139,8 +132,6 @@
     width: 0.625rem;
     height: 0.625rem;
     background-image: url('../../../static/images/index/vn.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
   }
   .music-list-message-listen-count {
     padding-right: 0.3125rem;
@@ -161,8 +152,6 @@
     width: 1.125rem;
     height: 1.125rem;
     background-image: url('../../../static/images/icon_info.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
   }
   .music-list-message-name {
     margin-top: 0.5rem;
@@ -226,8 +215,6 @@
     margin: 0 auto;
     width: 1.25rem;
     height: 1.25rem;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
   }
   .operation-collect-icon {
     background-image: url("../../../static/images/icon_collection.png");
@@ -279,8 +266,6 @@
   {
     width: 1.25rem;
     height: 1.25rem;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
   }
   .music-list-playlist-icon-title
   {
@@ -362,8 +347,6 @@
     width: 1.958rem;
     height: 0.8333rem;
     background-image: url("../../../static/images/icon_mv.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
   }
   .music-singer {
     padding-right: 1.5rem;
@@ -376,11 +359,10 @@
     width: 0.8125rem;
     height: 0.8125rem;
     background-image: url("../../../static/images/icon_ellipsis.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
   }
 </style>
 <script>
+  import IconBack from './IconBack.vue'
   export default{
     data () {
       return {
@@ -437,6 +419,7 @@
       this.loadData()
     },
     components: {
+      IconBack
     }
   }
 </script>

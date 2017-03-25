@@ -3,7 +3,7 @@
     <div class="song-list-detail" @click="goToMusicList(songListInfo.id)" :style="{'width': componentWidth + 'px', 'height': componentHeight + 'px'}">
       <img class="song-list-detail-cover" :src="songListInfo.coverImgUrl">
       <div class="flex song-list-detail-listen">
-        <div class="song-list-detail-listen-icon"></div>
+        <div class="song-list-detail-listen-icon background"></div>
         <div class="song-list-detail-listen-count">{{ songListInfo.playCount }}</div>
       </div>
     </div>
@@ -35,8 +35,6 @@
     width: 0.625rem;
     height: 0.625rem;
     background-image: url('../../../static/images/index/vn.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
   }
   .song-list-detail-listen-count {
     padding-right: 0.3125rem;

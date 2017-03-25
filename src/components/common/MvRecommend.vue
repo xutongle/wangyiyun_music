@@ -3,7 +3,7 @@
     <div class="mv-recommend-detail" :style="{'width': componentWidth + 'px', 'height': componentHeight + 'px'}">
       <img class="mv-recommend-detail-cover" src="../../../static/images/index/mv_recommend.jpg">
       <div class="flex mv-recommend-detail-listen">
-        <div class="mv-recommend-detail-listen-icon"></div>
+        <div class="mv-recommend-detail-listen-icon background"></div>
         <div class="mv-recommend-detail-listen-count">3425万</div>
       </div>
     </div>
@@ -36,8 +36,6 @@
     width: 0.75rem;
     height: 0.5rem;
     background-image: url('../../../static/images/index/y_.png');
-    background-repeat: no-repeat;
-    background-size: 100%;
   }
   .mv-recommend-detail-listen-count {
     padding-right: 0.3125rem;

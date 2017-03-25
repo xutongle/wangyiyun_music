@@ -59,4 +59,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .background {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: 0 0;
+  }
 </style>
