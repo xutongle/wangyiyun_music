@@ -9,9 +9,9 @@
       <div class="player-share background"></div>
     </div>
     <div class="flex player-diskette">
-      <div class="player-diskette-pole background"></div>
+      <div class="player-diskette-pole background" :class="{'playing': playStatus}"></div>
       <div class="player-diskette-bg"></div>
-      <div class="flex player-diskette-rotate background">
+      <div class="flex player-diskette-rotate background" :class="{'rotating': playStatus}">
         <img class="player-diskette-album" :src="songMsg.album.picUrl" />
         <!--<img v-if="songMsg.album.picUrl !== ''" class="player-diskette-album" :src="songMsg.album.picUrl" />-->
         <!--<img v-else class="player-diskette-album" src="../../static/images/player/album.png" />-->
@@ -95,6 +95,9 @@
     -o-transition: transform .5s ;
     transition: transform .5s ;
     transform-origin: 0.8125rem 0.8125rem;
+    transform: rotate(-25deg);
+  }
+  .player-diskette-pole.playing {
     transform: rotate(5deg);
   }
   .player-diskette-bg,
@@ -118,6 +121,51 @@
     align-items: center;
     background-image: url("../../static/images/player/icon_diskette.png");
     border-radius: 50%;
+    -webkit-animation: disketteRotate 20s linear infinite;
+    -o-animation: disketteRotate 20s linear infinite;
+    animation: disketteRotate 20s linear infinite;
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -o-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+  .rotating {
+    -webkit-animation-play-state: running;
+    -moz-animation-play-state: running;
+    -o-animation-play-state: running;
+    animation-play-state: running;
+  }
+  @-webkit-keyframes disketteRotate {
+    from {
+      -webkit-transform: rotate3d(0, 0, 1, 0deg);
+      -moz-transform: rotate3d(0, 0, 1, 0deg);
+      -ms-transform: rotate3d(0, 0, 1, 0deg);
+      -o-transform: rotate3d(0, 0, 1, 0deg);
+      transform: rotate3d(0, 0, 1, 0deg);
+    }
+    to {
+      -webkit-transform: rotate3d(0, 0, 1, 360deg);
+      -moz-transform: rotate3d(0, 0, 1, 360deg);
+      -ms-transform: rotate3d(0, 0, 1, 360deg);
+      -o-transform: rotate3d(0, 0, 1, 360deg);
+      transform: rotate3d(0, 0, 1, 360deg);
+    }
+  }
+  @keyframes disketteRotate {
+    from {
+      -webkit-transform: rotate3d(0, 0, 1, 0deg);
+      -moz-transform: rotate3d(0, 0, 1, 0deg);
+      -ms-transform: rotate3d(0, 0, 1, 0deg);
+      -o-transform: rotate3d(0, 0, 1, 0deg);
+      transform: rotate3d(0, 0, 1, 0deg);
+    }
+    to {
+      -webkit-transform: rotate3d(0, 0, 1, 360deg);
+      -moz-transform: rotate3d(0, 0, 1, 360deg);
+      -ms-transform: rotate3d(0, 0, 1, 360deg);
+      -o-transform: rotate3d(0, 0, 1, 360deg);
+      transform: rotate3d(0, 0, 1, 360deg);
+    }
   }
   .player-diskette-album {
     width: 11.0625rem;
