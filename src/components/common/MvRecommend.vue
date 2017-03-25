@@ -41,6 +41,7 @@
     padding-right: 0.3125rem;
     padding-left: 0.125rem;
     color: #fff;
+    line-height: 1rem;
   }
   .mv-recommend-detail-listen-count,
   .mv-recommend-singer

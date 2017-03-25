@@ -28,19 +28,19 @@
     <div class="flex music-list-operation">
       <div class="operation-collect">
         <div class="operation-collect-icon background"></div>
-        <div class="operation-collect-count">{{ songListInfo.subscribedCount }}</div>
+        <div class="operation-collect-count align-center">{{ songListInfo.subscribedCount }}</div>
       </div>
       <div class="operation-comment">
         <div class="operation-comment-icon background"></div>
-        <div class="operation-comment-count">{{ songListInfo.commentCount }}</div>
+        <div class="operation-comment-count align-center">{{ songListInfo.commentCount }}</div>
       </div>
       <div class="operation-share">
         <div class="operation-share-icon background"></div>
-        <div class="operation-share-count">{{ songListInfo.shareCount }}</div>
+        <div class="operation-share-count align-center">{{ songListInfo.shareCount }}</div>
       </div>
       <div class="operation-download">
         <div class="operation-download-icon background"></div>
-        <div class="operation-download-string">下载</div>
+        <div class="operation-download-string align-center">下载</div>
       </div>
     </div>
     <div class="music-list-playlist">
@@ -52,9 +52,10 @@
       <ul class="music-list">
         <template v-for="(track, index) in tracks">
           <li class="flex music-list-item" @click="playThis(track, index)" :key=track.id>
-            <div class="music-list-item-index">
+            <div v-if="songMsg.id !== track.id" class="music-list-item-index">
               <span>{{ index + 1 }}</span>
             </div>
+            <div v-else class="music-list-item-playing background"></div>
             <div class="flex music-item-container">
               <div class="music-item text-ellipsis">
                 <div class="flex music-detail">
@@ -138,6 +139,7 @@
     padding-left: 0.125rem;
     font-size: 10px;
     color: #fff;
+    line-height: 1rem;
   }
   [data-dpr="2"] .music-list-message-listen-count {
     font-size: 20px;
@@ -300,21 +302,27 @@
   }
   /*  列表  */
   .music-list {
-    padding-left: 0.9375rem;
     border-top: 1px solid #e5e7e8;
   }
   .music-list-item {
     align-items: center;
     justify-content: space-between;
-    /*border-bottom: 1px solid #e5e7e8;*/
   }
   .music-list-item-index {
-    margin-right: 1.25rem;
-    width: 1.125rem;
+    flex-shrink: 0;
+    width: 3.125rem;
     height: 1.125rem;
     color: #919293;
     line-height: 1.125rem;
     text-align: center;
+  }
+  .music-list-item-playing {
+    flex-shrink: 0;
+    margin-right: 0.9375rem;
+    margin-left: 0.9375rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    background-image: url("../../../static/images/icon_loudspeaker_playing.png");
   }
   .music-item-container {
     padding: 0.5rem 0;
@@ -410,10 +418,21 @@
         this.$store.commit('setSongMsgIndex', index)
         //  将该列表推送至正在播放列表,并进行避免重复推送校验
         if (this.playlist.type !== 'list' || (this.playlist.type === 'list' && this.playlist.id !== this.songListInfo.id)) {
+          var songList = [] //  优化列表在store中的大小，删除不必要的属性
+          this.tracks.forEach(function (value) {
+            songList.push({
+              id: value.id, //  歌曲id
+              name: value.name, // 歌曲名称
+              artists: value.artists, //  演唱歌手
+              album: value.album, //  专辑信息，主要用于封面图及背景高斯模糊
+              mp3Url: value.mp3Url, // 播放链接
+              mvid: value.mvid //  mv链接ID，0为没有id
+            })
+          })
           this.$store.commit('setPlaylist', {
             id: this.songListInfo.id,
             type: 'list',
-            list: this.tracks
+            list: songList
           })
         }
       }

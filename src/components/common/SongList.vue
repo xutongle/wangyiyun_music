@@ -41,6 +41,7 @@
     padding-left: 0.125rem;
     font-size: 10px;
     color: #fff;
+    line-height: 1rem;
   }
   [data-dpr="2"] .song-list-detail-listen-count {
     font-size: 20px;
