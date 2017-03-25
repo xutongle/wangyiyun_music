@@ -3,8 +3,8 @@
     <div class="flex player-header">
       <div class="btn-back"></div>
       <div class="player-music-item">
-        <h4 class="player-music-name">Shut Up and Kiss Me</h4>
-        <p class="player-music-singer">Ida Lafrontaine</p>
+        <h4 class="player-music-name text-ellipsis">{{ songMsg.name }}</h4>
+        <p class="player-music-singer text-ellipsis">{{ songMsg.artists | transformArtistList }}</p>
       </div>
       <div class="player-share"></div>
     </div>
@@ -179,6 +179,11 @@
   export default{
     data () {
       return {
+      }
+    },
+    computed: {
+      songMsg () {
+        return this.$store.state.songMsg
       }
     },
     methods: {

@@ -54,4 +54,9 @@
   .align-center {
     text-align: center;
   }
+  .text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 </style>

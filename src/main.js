@@ -28,3 +28,26 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+//  下面是一些公用的filter
+/**
+ * 用于过滤歌手列表,将歌手信息返回为以‘/’分割模式
+ * @list 歌手列表数组
+ * return string
+ */
+Vue.filter('transformArtistList', list => {
+  var str = ''
+  var listLength = list.length
+  if (listLength === 1) {
+    return list[0].name
+  } else {
+    list.forEach(function (value, index) {
+      if (index !== (listLength - 1)) {
+        str += value.name + '/'
+      } else {
+        str += value.name
+      }
+    })
+    return str
+  }
+})

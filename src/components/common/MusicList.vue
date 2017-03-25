@@ -56,12 +56,12 @@
               <span>{{ index + 1 }}</span>
             </div>
             <div class="flex music-item-container">
-              <div class="music-item">
+              <div class="music-item text-ellipsis">
                 <div class="flex music-detail">
-                  <div class="music-name">{{ track.name }}</div>
+                  <div class="music-name text-ellipsis">{{ track.name }}</div>
                   <div v-if="track.mvid !== 0" class="icon-mv"></div>
                 </div>
-                <div class="music-singer">{{ ' - ' + track.album.name }}</div>
+                <div class="music-singer text-ellipsis">{{track.artists | transformArtistList }}{{ ' - ' + track.album.name }}</div>
               </div>
               <div class="icon-ellipsis"></div>
             </div>
@@ -341,9 +341,6 @@
   }
   .music-item {
     flex-grow: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
   .music-detail {
     padding-right: 1.75rem;
@@ -352,9 +349,6 @@
   .music-name {
     font-size: 14px;
     line-height: 1.5rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
   [data-dpr="2"] .music-name {
     font-size: 28px;
@@ -375,9 +369,6 @@
     padding-right: 1.5rem;
     color: #797a7b;
     line-height: 0.875rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
   .icon-ellipsis {
     flex-shrink: 0;
