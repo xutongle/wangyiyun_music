@@ -21,10 +21,48 @@ var storeConfig = {
      mvid: mv链接ID，0为没有id
      */
     songMsg: {},
+    songMsgIndex: 0, //  当前正在播放音频在正在播放列表中的索引位置,默认0
     playStatus: false, //  当前播放状态：true为正在播放，false为暂停或者未播放
     playMode: 'listCycle' //  播放模式，三种：listCycle（列表循环），listRandom（列表随机）,singleCycle(单曲循环)
   },
   actions: {
+    preControl ({dispatch, state}) { //  上一首播放控制
+      var listLength = state.playlist.list.length
+      //  遵循播放模式进行控制
+      if (state.playMode !== 'listRandom') { //  只要不是随机，就进行上一首音频信息切换
+        if (state.songMsgIndex === 0) { //  当前为列表第一首的时候
+          dispatch('setSongMsg', state.playlist.list[listLength - 1])
+          state.songMsgIndex = listLength - 1
+        } else {
+          dispatch('setSongMsg', state.playlist.list[state.songMsgIndex - 1])
+          state.songMsgIndex -= 1
+        }
+      } else { // 列表随机
+        dispatch('randomMode')
+      }
+    },
+    nextControl ({dispatch, state}) { //  下一首播放控制
+      //  遵循播放模式进行控制
+      if (state.playMode !== 'listRandom') { //  只要不是随机，就进行下一首音频信息切换
+        if (state.songMsgIndex === state.playlist.list.length - 1) { //  当前为列表最后一首的时候
+          dispatch('setSongMsg', state.playlist.list[0])
+          state.songMsgIndex = 0
+        } else {
+          dispatch('setSongMsg', state.playlist.list[state.songMsgIndex + 1])
+          state.songMsgIndex += 1
+        }
+      } else {  // 列表随机
+        dispatch('randomMode')
+      }
+    },
+    randomMode ({dispatch, state}) { //  随机播放模式音频信息设置
+      var randomNumber = randomRange(0, state.playlist.list.length)
+      if (randomNumber === state.songMsgIndex) { //  防止随机到当前正在播放的音频
+        return dispatch('randomMode')
+      }
+      dispatch('setSongMsg', state.playlist.list[randomNumber])
+      state.songMsgIndex = randomNumber
+    },
     setSongMsg ({commit, state}, payload) { //  更改音频源时，进行播放操作
       //  设置正在播放音乐的信息
       state.songMsg = payload
@@ -50,6 +88,9 @@ var storeConfig = {
     setPlaylist (state, payload) { //  设置正在播放列表
       state.playlist = payload
     },
+    setSongMsgIndex (state, index) { //  设置正在播放歌曲在列表的索引位置
+      state.songMsgIndex = index
+    },
     setPlayMode (state) { //  更改播放模式，
       //  三种：listCycle（列表循环），listRandom（列表随机）,singleCycle(单曲循环)
       if (state.playMode === 'listCycle') {
@@ -61,5 +102,14 @@ var storeConfig = {
       }
     }
   }
+}
+/**
+ * 返回一个规定范围内的随机数
+ * @param startRange 最小范围
+ * @param endRange 最大范围
+ * @returns {number}
+ */
+function randomRange (startRange, endRange) {
+  return Math.floor(Math.random() * (endRange + 1 - startRange) + startRange)
 }
 export default storeConfig

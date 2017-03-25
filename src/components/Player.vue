@@ -21,9 +21,9 @@
       <div class="player-timeline"></div>
       <div class="flex player-controllers">
         <div @click="changePlayMode" class="player-mode background" :class="{'player-mode-listRandom': playMode === 'listRandom', 'player-mode-singleCycle': playMode === 'singleCycle'}"></div>
-        <div class="player-pre background"></div>
+        <div @click="preControl" class="player-pre background"></div>
         <div @click="playControl" class="player-pause background" :class="{'player-play': !playStatus}"></div>
-        <div class="player-next background"></div>
+        <div @click="nextControl" class="player-next background"></div>
         <div class="player-playing-list background"></div>
       </div>
     </div>
@@ -195,6 +195,12 @@
         } else {
           this.$store.commit('playControl')
         }
+      },
+      preControl () { //  上一首
+        this.$store.dispatch('preControl')
+      },
+      nextControl () { //  下一首
+        this.$store.dispatch('nextControl')
       },
       changePlayMode () {
         this.$store.commit('setPlayMode')

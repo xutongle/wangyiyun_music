@@ -51,7 +51,7 @@
       </div>
       <ul class="music-list">
         <template v-for="(track, index) in tracks">
-          <li class="flex music-list-item" @click="playThis(track)" :key=track.id>
+          <li class="flex music-list-item" @click="playThis(track, index)" :key=track.id>
             <div class="music-list-item-index">
               <span>{{ index + 1 }}</span>
             </div>
@@ -389,7 +389,7 @@
           }
         })
       },
-      playThis (songMsg) {
+      playThis (songMsg, index) {
         //  如果正在播放当前音乐，那么点击变为跳转到播放界面
         if (this.songMsg.id === songMsg.id) {
           this.$router.push({
@@ -406,6 +406,8 @@
           mp3Url: songMsg.mp3Url, // 播放链接
           mvid: songMsg.mvid //  mv链接ID，0为没有id
         })
+        //  设置当前播放音频在列表中的索引
+        this.$store.commit('setSongMsgIndex', index)
         //  将该列表推送至正在播放列表,并进行避免重复推送校验
         if (this.playlist.type !== 'list' || (this.playlist.type === 'list' && this.playlist.id !== this.songListInfo.id)) {
           this.$store.commit('setPlaylist', {
