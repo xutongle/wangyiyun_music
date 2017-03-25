@@ -21,6 +21,8 @@ var storeConfig = {
      mvid: mv链接ID，0为没有id
      */
     songMsg: {},
+    songCurrentTime: 0, //  当前正在播放音频的播放时间
+    songDuration: 0, //  当前正在播放音频的总时长
     songMsgIndex: 0, //  当前正在播放音频在正在播放列表中的索引位置,默认0
     playStatus: false, //  当前播放状态：true为正在播放，false为暂停或者未播放
     playMode: 'listCycle' //  播放模式，三种：listCycle（列表循环），listRandom（列表随机）,singleCycle(单曲循环)
@@ -76,6 +78,14 @@ var storeConfig = {
           }, 1500)
         }
       }
+      //  当加载完元数据时，获取当前媒体总时长
+      state.audioDomElement.onloadedmetadata = function () {
+        state.songDuration = this.duration
+      }
+      //  当前播放位置改变时，获取当前播放位置
+      state.audioDomElement.ontimeupdate = function () {
+        state.songCurrentTime = this.currentTime
+      }
     },
     setSongMsg ({commit, state}, payload) { //  更改音频源时，进行播放操作
       //  设置正在播放音乐的信息
@@ -101,6 +111,13 @@ var storeConfig = {
     },
     setPlaylist (state, payload) { //  设置正在播放列表
       state.playlist = payload
+    },
+    setSongCurrentTime (state, time) { //  设置当前正在播放音频的播放时间
+      state.songCurrentTime = time
+      state.audioDomElement.currentTime = time
+    },
+    setSongDuration (state, time) { //  设置当前正在播放音频的总时长
+      state.songDuration = time
     },
     setSongMsgIndex (state, index) { //  设置正在播放歌曲在列表的索引位置
       state.songMsgIndex = index

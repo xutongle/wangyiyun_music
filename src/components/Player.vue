@@ -18,7 +18,11 @@
       </div>
     </div>
     <div class="player-footer">
-      <div class="player-timeline"></div>
+      <div class="flex player-timeline">
+        <div class="player-timeline-time player-timeline-time-left">{{ songCurrentTime | transformTime}}</div>
+        <slider class="slider-wrap"></slider>
+        <div class="player-timeline-time player-timeline-time-right">{{ songDuration | transformTime}}</div>
+      </div>
       <div class="flex player-controllers">
         <div @click="changePlayMode" class="player-mode background" :class="{'player-mode-listRandom': playMode === 'listRandom', 'player-mode-singleCycle': playMode === 'singleCycle'}"></div>
         <div @click="preControl" class="player-pre background"></div>
@@ -175,6 +179,33 @@
   .player-footer {
     height: 6.75rem;
   }
+  .player-timeline {
+    justify-content: space-between;
+    align-items: center;
+  }
+  .player-timeline-time {
+    flex-shrink: 0;
+    width: 2.625rem;
+    font-size: 10px;
+    color: #7f615e;
+    line-height: 0.625rem;
+  }
+  .player-timeline-time-left {
+    padding-right: 0.375rem;
+    text-align: right;
+  }
+  .player-timeline-time-right {
+    padding-left: 0.375rem;
+  }
+  [data-dpr="2"] .player-timeline-time {
+    font-size: 20px;
+  }
+  [data-dpr="3"] .player-timeline-time {
+    font-size: 30px;
+  }
+  .slider-wrap {
+    flex-grow: 1;
+  }
   .player-controllers {
     margin-top: 1.25rem;
     padding: 0 1.125rem;
@@ -220,6 +251,7 @@
 </style>
 <script>
   import IconBack from './common/IconBack.vue'
+  import Slider from './common/Slider.vue'
   export default{
     data () {
       return {
@@ -234,6 +266,12 @@
       },
       playMode () {
         return this.$store.state.playMode
+      },
+      songCurrentTime () {
+        return this.$store.state.songCurrentTime
+      },
+      songDuration () {
+        return this.$store.state.songDuration
       }
     },
     methods: {
@@ -257,7 +295,7 @@
     created () {
     },
     components: {
-      IconBack
+      IconBack, Slider
     }
   }
 </script>

@@ -51,3 +51,8 @@ Vue.filter('transformArtistList', list => {
     return str
   }
 })
+Vue.filter('transformTime', time => {
+  var min = parseInt(time / 60)
+  var sec = parseInt(time % 60)
+  return (min < 10 ? '0' + min : min) + ':' + (sec < 10 ? '0' + sec : sec)
+})
