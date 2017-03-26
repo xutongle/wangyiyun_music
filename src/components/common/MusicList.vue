@@ -70,6 +70,7 @@
         </template>
       </ul>
     </div>
+    <footer-player v-if="songMsg.id !== undefined" style="flex-shrink: 0;"></footer-player>
   </div>
 </template>
 <style scoped>
@@ -371,6 +372,7 @@
 </style>
 <script>
   import IconBack from './IconBack.vue'
+  import FooterPlayer from './FooterPlayer.vue'
   export default{
     data () {
       return {
@@ -441,7 +443,7 @@
       this.loadData()
     },
     components: {
-      IconBack
+      IconBack, FooterPlayer
     }
   }
 </script>

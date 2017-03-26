@@ -15,6 +15,7 @@
 </template>
 <style scoped>
   .mv-recommend-component {
+    margin-bottom: 1.0625rem;
     line-height: 1rem;
   }
   .mv-recommend-detail {
