@@ -38,6 +38,7 @@ new Vue({
 Vue.filter('transformArtistList', list => {
   var str = ''
   var listLength = list.length
+  if (listLength === 0) return
   if (listLength === 1) {
     return list[0].name
   } else {
@@ -51,6 +52,11 @@ Vue.filter('transformArtistList', list => {
     return str
   }
 })
+/**
+ * 根据秒数返回的时间格式为 00:00
+ * @time 时间
+ * return string
+ */
 Vue.filter('transformTime', time => {
   var min = parseInt(time / 60)
   var sec = parseInt(time % 60)

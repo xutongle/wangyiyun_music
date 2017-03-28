@@ -10,8 +10,9 @@
       </div>
       <!--  暂时使用的两个div，circle控件后期将完善,list图标替换  -->
       <div @click="playControl" class="footer-player-playstatus background" :class="{'footer-player-playstatus-false': !playStatus}"></div>
-      <div class="footer-player-playlist background"></div>
+      <div @click="showPlaylist = !showPlaylist" class="footer-player-playlist background"></div>
     </div>
+    <playlist :component-mounted="showPlaylist" v-if="playlist.list.length !== 0" @close="showPlaylist = false"></playlist>
   </div>
 </template>
 <style scoped>
@@ -25,7 +26,7 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 50;
     justify-content: flex-start;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.8);
@@ -81,8 +82,17 @@
   }
 </style>
 <script>
+  import Playlist from '../Playlist.vue'
   export default{
+    data () {
+      return {
+        showPlaylist: false
+      }
+    },
     computed: {
+      playlist () {
+        return this.$store.state.playlist
+      },
       songMsg () {
         return this.$store.state.songMsg
       },
@@ -101,6 +111,9 @@
           this.$store.commit('playControl')
         }
       }
+    },
+    components: {
+      Playlist
     }
   }
 </script>

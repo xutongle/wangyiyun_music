@@ -57,6 +57,9 @@ var storeConfig = {
         dispatch('randomMode')
       }
     },
+    playFromPlaylist ({dispatch, state}, index) { //  从正在播放列表中选中播放
+      dispatch('setSongMsg', state.playlist.list[index])
+    },
     randomMode ({dispatch, state}) { //  随机播放模式音频信息设置
       var randomNumber = randomRange(0, state.playlist.list.length)
       if (randomNumber === state.songMsgIndex) { //  防止随机到当前正在播放的音频
@@ -112,6 +115,9 @@ var storeConfig = {
     setPlaylist (state, payload) { //  设置正在播放列表
       state.playlist = payload
     },
+    removeItemFromPlaylist (state, index) { //  从播放列表中移除一个元素
+      state.playlist.list.splice(index, 1)
+    },
     setSongCurrentTime (state, time) { //  设置当前正在播放音频的播放时间
       state.songCurrentTime = time
       state.audioDomElement.currentTime = time
@@ -130,6 +136,13 @@ var storeConfig = {
         state.playMode = 'singleCycle'
       } else {
         state.playMode = 'listCycle'
+      }
+    },
+    resetPlaylist (state) { //  清空/重置播放列表
+      state.playlist = {
+        id: 0, //  类型不为搜索的歌单ID
+        type: 'list', //  当前播放列表来源类型 { list: 歌单列表, search: 搜索列表}
+        list: []
       }
     }
   }
