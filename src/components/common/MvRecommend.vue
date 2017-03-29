@@ -1,6 +1,6 @@
 <template>
   <div class="mv-recommend-component" :style="{'width': componentWidth + 'px'}">
-    <div class="mv-recommend-detail" :style="{'width': componentWidth + 'px', 'height': componentHeight + 'px'}">
+    <div @click="goToMvPlayer" class="mv-recommend-detail" :style="{'width': componentWidth + 'px', 'height': componentHeight + 'px'}">
       <img class="mv-recommend-detail-cover" :src="mv.cover">
       <div class="flex mv-recommend-detail-listen">
         <div class="mv-recommend-detail-listen-icon background"></div>
@@ -94,8 +94,15 @@
     methods: {
       loadData () { //  加载数据
         this.$http({url: 'music_data.php', params: {mvid: this.id}}).then(function (res) {
-          console.log(res)
           this.mv = res.data.data
+        })
+      },
+      goToMvPlayer () { //  跳转到MV播放界面
+        this.$router.push({
+          name: 'mvPlayer',
+          query: {
+            video: this.mv.brs['480']
+          }
         })
       }
     },
