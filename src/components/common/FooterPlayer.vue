@@ -10,7 +10,7 @@
       </div>
       <!--  暂时使用的两个div，circle控件后期将完善,list图标替换  -->
       <div @click="playControl" class="footer-player-playstatus background" :class="{'footer-player-playstatus-false': !playStatus}"></div>
-      <div @click="showPlaylist = !showPlaylist" class="footer-player-playlist background"></div>
+      <div @click="showPlaylist = true" class="footer-player-playlist background"></div>
     </div>
     <playlist :component-mounted="showPlaylist" v-if="playlist.list.length !== 0" @close="showPlaylist = false"></playlist>
   </div>

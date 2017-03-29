@@ -28,9 +28,10 @@
         <div @click="preControl" class="player-pre background"></div>
         <div @click="playControl" class="player-pause background" :class="{'player-play': !playStatus}"></div>
         <div @click="nextControl" class="player-next background"></div>
-        <div class="player-playing-list background"></div>
+        <div @click="showPlaylist = true" class="player-playing-list background"></div>
       </div>
     </div>
+    <playlist :component-mounted="showPlaylist" v-if="playlist.list.length !== 0" @close="showPlaylist = false"></playlist>
   </div>
 </template>
 <style scoped>
@@ -252,12 +253,17 @@
 <script>
   import IconBack from './common/IconBack.vue'
   import Slider from './common/Slider.vue'
+  import Playlist from './Playlist.vue'
   export default{
     data () {
       return {
+        showPlaylist: false
       }
     },
     computed: {
+      playlist () {
+        return this.$store.state.playlist
+      },
       songMsg () {
         return this.$store.state.songMsg
       },
@@ -295,7 +301,7 @@
     created () {
     },
     components: {
-      IconBack, Slider
+      IconBack, Slider, Playlist
     }
   }
 </script>

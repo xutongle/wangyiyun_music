@@ -204,6 +204,8 @@
       },
       resetPlaylist () { //  清空播放列表
         this.$store.commit('resetPlaylist')
+        //  暂停当前正在播放的歌曲
+        this.$store.commit('pauseControl')
       },
       changePlayMode () {
         this.$store.commit('setPlayMode')
