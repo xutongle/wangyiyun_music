@@ -55,6 +55,7 @@
   }
   .playlist {
     position: fixed;
+    padding-bottom: 0.625rem;
     width: 100%;
     height: 384px;
     bottom: 0;

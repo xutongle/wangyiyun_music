@@ -1,15 +1,15 @@
 <template>
-  <div class="mv-recommend-component">
+  <div class="mv-recommend-component" :style="{'width': componentWidth + 'px'}">
     <div class="mv-recommend-detail" :style="{'width': componentWidth + 'px', 'height': componentHeight + 'px'}">
-      <img class="mv-recommend-detail-cover" src="../../../static/images/index/mv_recommend.jpg">
+      <img class="mv-recommend-detail-cover" :src="mv.cover">
       <div class="flex mv-recommend-detail-listen">
         <div class="mv-recommend-detail-listen-icon background"></div>
-        <div class="mv-recommend-detail-listen-count">3425万</div>
+        <div class="mv-recommend-detail-listen-count">{{ mv.playCount }}</div>
       </div>
     </div>
     <div class="mv-recommend-message">
-      <h4 class="mv-recommend-name">The Heroes</h4>
-      <p class="mv-recommend-singer">许魏洲</p>
+      <h4 class="mv-recommend-name text-ellipsis">{{ mv.name }}</h4>
+      <p class="mv-recommend-singer text-ellipsis">{{ mv.artists | transformArtistList }}</p>
     </div>
   </div>
 </template>
@@ -73,10 +73,17 @@
 </style>
 <script>
   export default{
+    props: {
+      id: {
+        type: Number,
+        required: true
+      }
+    },
     data () {
       return {
         componentWidth: 0, //  当前组件宽度
-        componentHeight: 0 //  当前组件高度
+        componentHeight: 0, //  当前组件高度
+        mv: {} //  MV信息对象
       }
     },
     computed: {
@@ -84,11 +91,20 @@
         return this.$store.state.phoneResolutionWidth
       }
     },
+    methods: {
+      loadData () { //  加载数据
+        this.$http({url: 'music_data.php', params: {mvid: this.id}}).then(function (res) {
+          console.log(res)
+          this.mv = res.data.data
+        })
+      }
+    },
     created () {
       //  设置组件宽度 = （当前手机分辨率宽度 - 2px间距) / 2
       this.componentWidth = (this.phoneResolutionWidth - 2) / 2
       //  组件高度为宽度的0.567倍
       this.componentHeight = this.componentWidth * 0.567
+      this.loadData()
     }
   }
 </script>

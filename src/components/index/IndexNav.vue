@@ -19,10 +19,10 @@
       </div>
       <cate-title title="推荐MV"></cate-title>
       <div class="flex mv-recommend-container">
-        <mv-recommend></mv-recommend>
-        <mv-recommend></mv-recommend>
-        <mv-recommend></mv-recommend>
-        <mv-recommend></mv-recommend>
+        <mv-recommend :id="372204"></mv-recommend>
+        <mv-recommend :id="320111"></mv-recommend>
+        <mv-recommend :id="306013"></mv-recommend>
+        <mv-recommend :id="5342314"></mv-recommend>
       </div>
     </div>
   </div>
@@ -56,6 +56,9 @@
   {
     flex-wrap: wrap;
     justify-content: space-between;
+  }
+  .mv-recommend-container {
+    padding-bottom: 1.25rem;
   }
 </style>
 <script>
