@@ -9,6 +9,7 @@
       <div class="player-share background"></div>
     </div>
     <div class="flex player-diskette">
+      <div class="play-line background"></div>
       <div class="player-diskette-pole background" :class="{'playing': playStatus}"></div>
       <div class="player-diskette-bg"></div>
       <div class="flex player-diskette-rotate background" :class="{'rotating': playStatus}">
@@ -85,6 +86,15 @@
     flex-grow: 1;
     justify-content: center;
     overflow: hidden;
+  }
+  .play-line {
+    position: absolute;
+    width: 100%;
+    height: 0.0625rem;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    background-image: url("../../static/images/player/icon_line.png");
   }
   .player-diskette-pole {
     position: absolute;
