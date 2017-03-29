@@ -6,10 +6,12 @@
     <transition name="up">
       <div v-if="componentMounted" class="playlist">
         <div class="flex playlist-header">
-          <div class="flex playlist-header-left">
+          <div @click="changePlayMode" class="flex playlist-header-left">
             <div class="flex play-mode">
-              <div class="play-mode-icon background"></div>
-              <div class="play-mode-name">列表循环</div>
+              <div class="play-mode-icon background" :class="{'play-mode-icon-random': playMode === 'listRandom','play-mode-icon-single': playMode === 'singleCycle'}"></div>
+              <div v-if="playMode === 'listCycle'" class="play-mode-name">列表循环</div>
+              <div v-else-if="playMode === 'listRandom'" class="play-mode-name">随机播放</div>
+              <div v-else class="play-mode-name">单曲循环</div>
             </div>
             <div class="playlist-length">(188)</div>
           </div>
@@ -80,14 +82,24 @@
     transform: translateY(100%);
   }
   .playlist-header {
-    padding: 0 0.625rem;
     height: 3.0625rem;
     justify-content: space-between;
     align-items: center;
     border-bottom: 0.0625rem solid #e6e6e6;
   }
+  .playlist-header-left,
+  .playlist-header-right
+  {
+    padding: 0 0.625rem;
+    height: 100%;
+    line-height: 3.125rem;
+  }
+  .playlist-header-right {
+    align-items: center;
+  }
   .play-mode {
     margin-right: 0.625rem;
+    align-items: center;
   }
   .playlist-trash-icon,
   .play-mode-icon {
@@ -96,7 +108,13 @@
     height: 1rem;
   }
   .play-mode-icon {
-    background-image: url("../../static/images/player/icon_loop_mode.png");
+    background-image: url("../../static/images/icon_loop_mode.png");
+  }
+  .play-mode-icon-random {
+    background-image: url("../../static/images/icon_random_mode.png");
+  }
+  .play-mode-icon-single {
+    background-image: url("../../static/images/icon_single_mode.png");
   }
   .playlist-trash-icon {
     background-image: url("../../static/images/icon_trash.png");
@@ -159,6 +177,9 @@
       },
       songMsg () {
         return this.$store.state.songMsg
+      },
+      playMode () {
+        return this.$store.state.playMode
       }
     },
     methods: {
@@ -183,6 +204,9 @@
       },
       resetPlaylist () { //  清空播放列表
         this.$store.commit('resetPlaylist')
+      },
+      changePlayMode () {
+        this.$store.commit('setPlayMode')
       }
     }
   }
