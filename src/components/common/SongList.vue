@@ -93,8 +93,9 @@
       }
     },
     created () {
-      //  设置组件宽度 = （当前手机分辨率宽度 - （2px间距）* 2) / 3
-      this.componentWidth = (this.phoneResolutionWidth - 2 * 2) / 3
+      var dpr = window.devicePixelRatio || 1
+      //  设置组件宽度 = （当前手机分辨率宽度 - （2px间距）* 2 * 设备像素比) / 3
+      this.componentWidth = (this.phoneResolutionWidth - 2 * 2 * dpr) / 3
       //  组件高度和宽度比为1:1
       this.componentHeight = this.componentWidth
       this.loadData()
