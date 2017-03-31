@@ -37,8 +37,9 @@ new Vue({
  */
 Vue.filter('transformArtistList', list => {
   var str = ''
+  if (!list) return str //  避免传入undefined引发的错误
   var listLength = list.length
-  if (listLength === 0) return
+  if (listLength === 0) return str
   if (listLength === 1) {
     return list[0].name
   } else {
