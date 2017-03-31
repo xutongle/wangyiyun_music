@@ -1,7 +1,7 @@
 <template>
   <div class="index-top primary-bg-color flex">
     <div class="logo background"></div>
-    <div class="search background"></div>
+    <div @click="goToSearch" class="search background"></div>
   </div>
 </template>
 <style scoped>
@@ -25,15 +25,10 @@
 <script>
   export default{
     name: 'top',
-    data () {
-      return {
-      }
-    },
     methods: {
-    },
-    created () {
-    },
-    components: {
+      goToSearch () {
+        this.$router.push({name: 'Search'})
+      }
     }
   }
 </script>
