@@ -1,5 +1,5 @@
 <template>
-  <div class="index-component">
+  <div class="index-component" :class="{'padding-bottom': songMsg.id !== undefined}">
     <index-top></index-top>
     <index-nav></index-nav>
     <footer-player v-if="songMsg.id !== undefined"></footer-player>
@@ -28,4 +28,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .padding-bottom {
+    padding-bottom: 3.0625rem;
+  }
 </style>

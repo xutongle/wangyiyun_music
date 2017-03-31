@@ -1,5 +1,5 @@
 <template>
-  <div class="music-list-component">
+  <div class="music-list-component" :class="{'padding-bottom': songMsg.id !== undefined}">
     <div class="flex music-list-header">
       <icon-back></icon-back>
       <h3 class="music-list-title text-ellipsis">歌单</h3>
@@ -75,10 +75,13 @@
 </template>
 <style scoped>
   .music-list-component {
-    height: 100%;
+    /*height: 100%;*/
     display: flex;
     flex-direction: column;
     background: linear-gradient(0deg, #6e564f, #5b1f1c);
+  }
+  .padding-bottom {
+    padding-bottom: 3.0625rem;
   }
   .music-list-header {
     padding: 0.4375rem 0.875rem 0 1.125rem;

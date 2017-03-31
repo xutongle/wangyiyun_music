@@ -16,7 +16,6 @@
   </div>
 </template>
 <style scoped>
-  .footer-player-component,
   .footer-player
   {
     width: 100%;
@@ -29,7 +28,7 @@
     z-index: 50;
     justify-content: flex-start;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
   }
   .footer-player-album-container {
     flex-shrink: 0;

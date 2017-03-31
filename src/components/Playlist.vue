@@ -57,7 +57,7 @@
     position: fixed;
     padding-bottom: 0.625rem;
     width: 100%;
-    height: 384px;
+    height: 24rem; /*  384px  */
     bottom: 0;
     left: 0;
     z-index: 99;
