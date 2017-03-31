@@ -109,8 +109,8 @@ var storeConfig = {
       state.audioDomElement.pause()
       state.playStatus = false
     },
-    setPhoneResolutionWidth (state) { //  获取手机分辨率宽度
-      state.phoneResolutionWidth = window.screen.width * window.devicePixelRatio
+    setPhoneResolutionWidth (state, width) { //  获取手机分辨率宽度
+      state.phoneResolutionWidth = width
     },
     setPlaylist (state, payload) { //  设置正在播放列表
       state.playlist = payload
