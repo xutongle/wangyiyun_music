@@ -106,7 +106,7 @@
         })
       }
     },
-    created () {
+    beforeMount () {
       var dpr = window.devicePixelRatio || 1
       //  设置组件宽度 = （当前手机分辨率宽度 - 2px间距 * 设备像素比) / 2
       this.componentWidth = (this.phoneResolutionWidth - 2 * dpr) / 2

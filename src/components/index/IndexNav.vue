@@ -13,6 +13,8 @@
         <song-list :id="447039671"></song-list>
         <song-list :id="560801222"></song-list>
         <song-list :id="506954473"></song-list>
+      </div>
+      <div class="flex song-list-container">
         <song-list :id="506913893"></song-list>
         <song-list :id="505347469"></song-list>
         <song-list :id="323396962"></song-list>
@@ -21,6 +23,8 @@
       <div class="flex mv-recommend-container">
         <mv-recommend :id="372204"></mv-recommend>
         <mv-recommend :id="320111"></mv-recommend>
+      </div>
+      <div class="flex mv-recommend-container">
         <mv-recommend :id="306013"></mv-recommend>
         <mv-recommend :id="5342314"></mv-recommend>
       </div>
@@ -57,7 +61,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  .mv-recommend-container {
+  .mv-recommend-container:last-child {
     padding-bottom: 1.25rem;
   }
 </style>

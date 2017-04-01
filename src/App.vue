@@ -9,11 +9,11 @@
   import AudioController from './components/AudioController.vue'
   export default {
     name: 'app',
-    created () {
+    beforeCreate () {
       //  获取当前设备像素比
       var dpr = window.devicePixelRatio || 1
       //  获取当前手机分辨率宽度
-      this.$store.commit('setPhoneResolutionWidth', window.screen.width * dpr)
+      this.$store.commit('setPhoneResolutionWidth', document.body.clientWidth * dpr)
       //  动态获取手机的DPR设备像素比，对总体字体大小进行设置
       var viewport = document.querySelector('meta[name="viewport"]')
       var html = document.getElementsByTagName('html')[0]
@@ -22,7 +22,7 @@
       html.style.fontSize = 16 * dpr + 'px'
       html.dataset.dpr = dpr
       body.style.fontSize = 12 * dpr + 'px'
-      viewport.content = 'initial-scale=' + 1 / dpr + ', maximum-scale=' + 1 / dpr + ', minimum-scale=' + 1 / dpr + ', user-scalable=no'
+      viewport.content = 'width=device-width, initial-scale=' + 1 / dpr + ', maximum-scale=' + 1 / dpr + ', minimum-scale=' + 1 / dpr + ', user-scalable=no'
     },
     components: {
       AudioController
